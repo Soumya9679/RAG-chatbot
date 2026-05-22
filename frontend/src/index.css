@@ -4,6 +4,150 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background: #0f172a;
-  font-family: Inter, sans-serif;
+  background: #090d16; /* Dark slate-950 background */
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: #f8fafc;
+  overflow: hidden;
+}
+
+/* Custom scrollbars for a cleaner, modern look */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b; /* slate-800 */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #334155; /* slate-700 */
+}
+
+/* Custom markdown rendering rules inside chat bubbles */
+.markdown-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+  font-weight: 600;
+  color: #f8fafc;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.markdown-content h1 { font-size: 1.25rem; }
+.markdown-content h2 { font-size: 1.15rem; }
+.markdown-content h3 { font-size: 1.05rem; }
+
+.markdown-content p {
+  margin-bottom: 0.75rem;
+  color: #cbd5e1; /* slate-300 */
+}
+
+.markdown-content p:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-content ul,
+.markdown-content ol {
+  margin-left: 1.25rem;
+  margin-bottom: 0.75rem;
+  list-style-position: outside;
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+}
+
+.markdown-content li {
+  margin-bottom: 0.25rem;
+  color: #cbd5e1;
+}
+
+.markdown-content code {
+  background-color: rgba(30, 41, 59, 0.5); /* slate-800/50 */
+  color: #f1f5f9; /* slate-100 */
+  padding: 0.15rem 0.3rem;
+  border-radius: 0.25rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  font-size: 0.85em;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.markdown-content pre {
+  background-color: #030712; /* gray-950 */
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  overflow-x: auto;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  color: #e2e8f0;
+  font-size: 0.85rem;
+  display: block;
+}
+
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.markdown-content th,
+.markdown-content td {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+}
+
+.markdown-content th {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.markdown-content td {
+  color: #cbd5e1;
+}
+
+.markdown-content blockquote {
+  border-left: 3px solid #4f46e5; /* indigo-600 */
+  padding-left: 0.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.75rem;
+  color: #94a3b8; /* slate-400 */
+  font-style: italic;
+}
+
+.markdown-content a {
+  color: #6366f1; /* indigo-500 */
+  text-decoration: underline;
+  transition: color 0.15s;
+}
+
+.markdown-content a:hover {
+  color: #818cf8; /* indigo-400 */
 }
