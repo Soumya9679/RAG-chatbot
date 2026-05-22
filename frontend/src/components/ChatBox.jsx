@@ -44,7 +44,7 @@ export default function ChatBox() {
     try {
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/chat",
+        "https://mobile-energy-deodorize.ngrok-free.dev/chat",
         {
           question: currentMessage
         }
