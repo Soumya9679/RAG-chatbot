@@ -10,9 +10,11 @@ from langchain_community.vectorstores import (
     FAISS
 )
 
-from langchain_google_genai import (
-    ChatGoogleGenerativeAI
-)
+# from langchain_google_genai import (
+#     ChatGoogleGenerativeAI
+# )
+
+from langchain_ollama import ChatOllama
 
 # LOAD ENV VARIABLES
 
@@ -44,9 +46,8 @@ retriever = vectorstore.as_retriever(
 
 # GEMINI MODEL
 
-llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
-    google_api_key=google_api_key
+llm = ChatOllama(
+    model="qwen2.5:1.5b"
 )
 
 # MAIN RAG FUNCTION

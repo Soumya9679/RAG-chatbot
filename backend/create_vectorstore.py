@@ -25,7 +25,7 @@ google_api_key = os.getenv("GOOGLE_API_KEY")
 
 # LOAD CSV
 
-df = pd.read_csv("data/data.csv")
+df = pd.read_csv("data/data1.csv")
 
 # CONVERT ROWS TO TEXT
 
