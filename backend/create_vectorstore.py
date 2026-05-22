@@ -1,26 +1,37 @@
+import os
 import pandas as pd
 
-from langchain_text_splitters import (
-    RecursiveCharacterTextSplitter
-)
+from dotenv import load_dotenv
 
-from langchain_huggingface import (
-    HuggingFaceEmbeddings
-)
+# from langchain_google_genai import (
+#     GoogleGenerativeAIEmbeddings
+# )
 
 from langchain_community.vectorstores import (
     FAISS
 )
 
+from langchain_text_splitters import (
+    RecursiveCharacterTextSplitter
+)
+
+# LOAD ENV
+
+load_dotenv()
+
+# LOAD API KEY
+
+google_api_key = os.getenv("GOOGLE_API_KEY")
+
 # LOAD CSV
 
 df = pd.read_csv("data/data.csv")
 
-# CONVERT ROWS TO DOCUMENTS
+# CONVERT ROWS TO TEXT
 
 documents = []
 
-for index, row in df.iterrows():
+for _, row in df.iterrows():
 
     text = ""
 
@@ -39,7 +50,12 @@ splitter = RecursiveCharacterTextSplitter(
 
 chunks = splitter.create_documents(documents)
 
-# EMBEDDINGS
+# GEMINI EMBEDDINGS
+
+
+from langchain_huggingface import (
+    HuggingFaceEmbeddings
+)
 
 embeddings = HuggingFaceEmbeddings(
     model_name="sentence-transformers/all-MiniLM-L6-v2"
@@ -52,7 +68,7 @@ vectorstore = FAISS.from_documents(
     embeddings
 )
 
-# SAVE LOCALLY
+# SAVE
 
 vectorstore.save_local("faiss_index")
 

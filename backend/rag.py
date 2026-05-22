@@ -1,5 +1,10 @@
 import os
 
+from dotenv import load_dotenv
+
+from langchain_huggingface import (
+    HuggingFaceEmbeddings
+)
 
 from langchain_community.vectorstores import (
     FAISS
@@ -9,22 +14,21 @@ from langchain_google_genai import (
     ChatGoogleGenerativeAI
 )
 
-# EMBEDDING MODEL
-from langchain_google_genai import (
-    GoogleGenerativeAIEmbeddings
-)
+# LOAD ENV VARIABLES
 
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001"
-)
-
+load_dotenv()
 
 # API KEY
 
-os.environ["GOOGLE_API_KEY"] = "AIzaSyDjNd-ffQWUQlNk_V54SUTsIvgwM8MzTCk"
+google_api_key = os.getenv("GOOGLE_API_KEY")
 
+# EMBEDDING MODEL
 
-# LOAD VECTOR DB
+embeddings = HuggingFaceEmbeddings(
+    model_name="sentence-transformers/all-MiniLM-L6-v2"
+)
+
+# LOAD FAISS DATABASE
 
 vectorstore = FAISS.load_local(
     "faiss_index",
@@ -38,17 +42,18 @@ retriever = vectorstore.as_retriever(
     search_kwargs={"k": 3}
 )
 
-# LLM
+# GEMINI MODEL
 
 llm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash"
+    model="gemini-2.5-flash",
+    google_api_key=google_api_key
 )
 
-# MAIN FUNCTION
+# MAIN RAG FUNCTION
 
 def ask_rag(question):
 
-    # RETRIEVE DOCUMENTS
+    # RETRIEVE RELEVANT DOCS
 
     docs = retriever.invoke(question)
 
@@ -76,7 +81,7 @@ def ask_rag(question):
     {question}
     """
 
-    # LLM RESPONSE
+    # GET RESPONSE
 
     response = llm.invoke(prompt)
 

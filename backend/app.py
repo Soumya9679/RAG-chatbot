@@ -12,7 +12,7 @@ from rag import ask_rag
 
 app = FastAPI()
 
-# CORS
+# ENABLE CORS
 
 app.add_middleware(
     CORSMiddleware,
@@ -27,7 +27,7 @@ app.add_middleware(
 class Query(BaseModel):
     question: str
 
-# ROUTE
+# CHAT ENDPOINT
 
 @app.post("/chat")
 
